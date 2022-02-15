@@ -1,0 +1,49 @@
+version: "3"
+services:
+    react-app-client:
+        image: react-app-client
+        stdin_open: true # keep the container alive and listening for requests after startup
+        ports:
+            - "3000:3000"
+        networks:
+            - coffee-shop
+        depends_on:
+            - api-server
+
+    react-app-employee:
+        image: react-app-employee
+        stdin_open: true # keep the container alive and listening for requests after startup
+        ports:
+            - "3001:3001"
+        networks:
+            - coffee-shop
+        depends_on:
+            - api-server
+
+    api-server:
+        image: api-server
+        ports:
+            - "5000:5000"
+        networks:
+            - coffee-shop
+        # depends_on:
+        #     - mongo
+
+    # mongo:
+    #     image: mongo:4.0-xenial
+    #     ports:
+    #         - "27017:27017"
+    #     networks:
+    #         - coffee-shop
+    #     volumes:
+    #         - mongo-data:/data/db
+
+# define network, allowing services to talk to one another
+# while providing isolation  from other docker containers that running under
+# the same host
+networks:
+    coffee-shop:
+        driver: bridge
+# volumes: # persistent data across container restarts
+#     mongo-data:
+#         driver: local
