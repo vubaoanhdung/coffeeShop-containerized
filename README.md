@@ -1,4 +1,7 @@
 ## **Coffee Shop**
+
+A simple, containerized application for two types of users: customers and employees. Each type of user has its own servers which serve different purposes. Customers will be able to see the menu, add items to the cart, pay for their orders, and see the orders history as well as the status of their orders (ready or being prepared). Employees will be able to edit the menu, see the waiting orders and serve an order(inform the customer that order is ready)
+
 - To fire up server, client, and employee at the same time, run
 > make build 
 
